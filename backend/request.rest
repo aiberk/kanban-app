@@ -1,1 +1,28 @@
-GET http://localhost:6000/
+GET http://localhost:6000/users
+
+###
+GET http://localhost:6000/users/63b5accadfc3ac319cd42672
+
+###
+POST http://localhost:6000/users
+Content-Type: application/json
+
+{
+    "name": "Test Name2",
+    "email": "test@test.com",
+    "gender": "Female"
+}
+
+###
+PATCH http://localhost:6000/users/63b5accadfc3ac319cd42672
+Content-Type: application/json
+
+{
+    "name": "ICHanged",
+    "email": "test@test.com",
+    "gender": "Female"
+}
+
+###
+DELETE  http://localhost:6000/users/63b5accadfc3ac319cd42672
+Content-Type: application/json

@@ -11,7 +11,8 @@ const UserList = () => {
 
   const getUsers = async () => {
     const response = await axios.get("http://localhost:6000/users");
-    setUser(response.data);
+    // setUser(response.data);
+    console.log(response.data);
   };
 
   const deleteUser = async (id) => {
