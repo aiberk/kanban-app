@@ -5,12 +5,12 @@ const User = mongoose.Schema({
     type: String,
     required: true,
   },
-  description: {
+  email: {
     type: String,
     required: true,
   },
-  completed: {
-    type: Boolean,
+  gender: {
+    type: String,
     required: true,
   },
 });

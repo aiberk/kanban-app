@@ -5,7 +5,7 @@ import {
   saveUser,
   updateUser,
   deleteUser,
-} from "../backend/controllers/UserController.js";
+} from "../../backend/controllers/UserController.js";
 
 const router = express.Router();
 
