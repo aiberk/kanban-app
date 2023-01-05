@@ -56,12 +56,21 @@ app.get("/api/tasks", async (req, res) => {
 
 //Create new tasks POST request
 app.post("/create-task", cleanup, async (req, res) => {
-  console.log(req.body);
   const newData = await db.collection("Tasks").insertOne(req.cleanData);
   const newTask = await db
     .collection("Tasks")
     .findOne({ _id: new ObjectId(newData.insertId) });
   res.send(newTask);
+});
+
+//Edits task info
+app.post("/update-task", async (req, res) => {
+  console.log(req.body);
+  db.collection("Tasks").replaceOne(
+    { _id: new ObjectId(req.params.id) },
+    req.body
+  );
+  res.send("Task Updated");
 });
 
 //Deletes task by using its id number
