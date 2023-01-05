@@ -8,8 +8,8 @@ function TaskCard(props) {
       <p>{props.description ? props.description : "Empty Prop Name"}</p>
       <button
         onClick={async () => {
-          const test = axios.delete(`/tasks/${props.id}`);
-          console.log("Delete hit");
+          const test = axios.delete(`/task/${props.id}`);
+          console.log(props);
           props.setTasks((prev) => {
             return prev.filter((task) => {
               return task._id != props.id;

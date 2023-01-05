@@ -63,9 +63,9 @@ app.post("/create-task", cleanup, async (req, res) => {
   res.send(newTask);
 });
 
-//Deletes task
+//Deletes task by using its id number
 app.delete("/task/:id", async (req, res) => {
-  // if (typeof req.params.id != "string") req.params.id = "";
+  if (typeof req.params.id != "string") req.params.id = "";
   db.collection("Tasks").deleteOne({ _id: new ObjectId(req.params.id) });
   res.send("Item Deleted");
 });

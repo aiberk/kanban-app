@@ -24,8 +24,10 @@ function App() {
         return (
           <TaskCard
             key={task._id}
+            id={task._id}
             name={task.name}
             description={task.description}
+            setTasks={setTasks}
           />
         );
       })}
