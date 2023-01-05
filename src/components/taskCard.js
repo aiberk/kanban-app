@@ -1,12 +1,10 @@
 import React from "react";
 
 function TaskCard(props) {
-  console.log(props);
   return (
-    <div>
-      <h1>taskCard</h1>
+    <div style={{ border: "1px solid gray", padding: "2rem" }}>
       <h2>{props.name}</h2>
-      <h2>{props.description ? props.description : "Empty Prop Name"}</h2>
+      <p>{props.description ? props.description : "Empty Prop Name"}</p>
     </div>
   );
 }

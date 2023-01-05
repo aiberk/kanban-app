@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
+import axios from "axios";
 import TaskCard from "./components/taskCard";
+import CreateNewTask from "./components/CreateNewTask";
 
 function App() {
-  const tasks = [
-    { name: "task-name", description: "task-description", status: "complete" },
-    {
-      name: "task-name2",
-      description: "task-description2",
-      status: "incomplete",
-    },
-  ];
+  const [tasks, setTasks] = useState([]);
+
+  //Empty useEffect to only call the api once.
+  useEffect(() => {
+    async function getData() {
+      const res = await axios.get("/api/tasks");
+      setTasks(res.data);
+    }
+    getData();
+  }, []);
+
   return (
     <div>
+      <CreateNewTask setTasks={setTasks} />
       <h1>Tasks:</h1>
       {tasks.map((task) => {
-        return <TaskCard name={task.name} description={task.description} />;
+        return (
+          <TaskCard
+            key={task._id}
+            name={task.name}
+            description={task.description}
+          />
+        );
       })}
     </div>
   );
