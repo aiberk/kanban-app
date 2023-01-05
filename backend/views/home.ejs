@@ -1,0 +1,6 @@
+<h1>Kanban Tasks</h1>
+<ul>
+  <% allTasks.forEach(function(task){ %>
+  <li><%= task.name%> - <%= task.description%> - <%= task.status%></li>
+  <% }) %>
+</ul>

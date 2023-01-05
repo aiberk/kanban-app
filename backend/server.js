@@ -2,15 +2,17 @@ const { MongoClient } = require("mongodb");
 const express = require("express");
 
 const app = express();
+app.set("view engine", "ejs");
+app.set("views", "./views");
 let db;
 
 app.get("/", async (req, res) => {
   const allTasks = await db.collection("Tasks").find().toArray();
   console.log(allTasks);
-  res.send("Homepage");
+  res.render("home", { allTasks });
 });
 app.get("/admin", (req, res) => {
-  res.send("Admin Page");
+  res.render("admin");
 });
 
 async function startDB() {
