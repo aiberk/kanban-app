@@ -54,7 +54,6 @@ app.get("/api/tasks", async (req, res) => {
 });
 
 //Create new tasks POST request
-//For some reason  not posting all data
 app.post("/create-task", cleanup, async (req, res) => {
   console.log(req.body);
   const newData = await db.collection("Tasks").insertOne(req.cleanData);
@@ -62,6 +61,13 @@ app.post("/create-task", cleanup, async (req, res) => {
     .collection("Tasks")
     .findOne({ _id: new ObjectId(newData.insertId) });
   res.send(newTask);
+});
+
+//Deletes task
+app.delete("/task/:id", async (req, res) => {
+  // if (typeof req.params.id != "string") req.params.id = "";
+  db.collection("Tasks").deleteOne({ _id: new ObjectId(req.params.id) });
+  res.send("Item Deleted");
 });
 
 // Pulls data from Mongo

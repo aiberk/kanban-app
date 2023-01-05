@@ -15,7 +15,7 @@ function App() {
     }
     getData();
   }, []);
-
+  console.log(tasks);
   return (
     <div>
       <CreateNewTask setTasks={setTasks} />

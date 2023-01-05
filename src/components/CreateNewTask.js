@@ -11,7 +11,9 @@ const CreateNewTask = (props) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     console.log(formData);
-    await axios.post("/create-task", formData);
+    await axios
+      .post("/create-task", formData)
+      .then(window.location.reload(true));
   };
 
   return (
