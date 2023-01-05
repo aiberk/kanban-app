@@ -4,6 +4,8 @@
   "description": "CRUD Kanban App with React and Mongoose",
   "main": "server.js",
   "scripts": {
+    "runDev": "run-p startall webPack",
+    "webPack": "webpack --watch",
     "startall": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,12 +13,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^9.1.2",
     "cors": "^2.8.5",
     "create-react-app": "^1.2.1",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "mongodb": "^4.13.0",
-    "mongoose": "^6.8.2"
+    "mongoose": "^6.8.2",
+    "npm-run-all": "^4.1.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-node-externals": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

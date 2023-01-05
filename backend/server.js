@@ -1,16 +1,18 @@
 const { MongoClient } = require("mongodb");
 const express = require("express");
 
+let db;
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", "./views");
-let db;
+app.use(express.static("../public"));
 
 app.get("/", async (req, res) => {
   const allTasks = await db.collection("Tasks").find().toArray();
   console.log(allTasks);
   res.render("home", { allTasks });
 });
+
 app.get("/admin", (req, res) => {
   res.render("admin");
 });
