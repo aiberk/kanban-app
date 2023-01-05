@@ -14,14 +14,20 @@ app.use(express.urlencoded({ extended: false }));
 
 //Sanitizes html from injection attacks
 const cleanup = (req, res, next) => {
-  if (typeof req.body.name != "string") req.body.name = "sanitized";
-  if (typeof req.body.decription != "string") req.body.name = "";
+  // need beteer clearup of types
+  // if (typeof req.body.name != "string") req.body.name = "sanitized";
+  // if (typeof req.body.decription != "string") req.body.description = "";
+  // if (typeof req.body.status != "string") req.body.status = "Incomplete";
   req.cleanData = {
     name: sanitizeHtml(req.body.name.trim(), {
       allowedTags: [],
       allowedAttributes: {},
     }),
     description: sanitizeHtml(req.body.description.trim(), {
+      allowedTags: [],
+      allowedAttributes: {},
+    }),
+    status: sanitizeHtml(req.body.status.trim(), {
       allowedTags: [],
       allowedAttributes: {},
     }),
@@ -50,7 +56,7 @@ app.get("/api/tasks", async (req, res) => {
 //Create new tasks POST request
 //For some reason  not posting all data
 app.post("/create-task", cleanup, async (req, res) => {
-  console.log(req);
+  console.log(req.body);
   const newData = await db.collection("Tasks").insertOne(req.cleanData);
   const newTask = await db
     .collection("Tasks")

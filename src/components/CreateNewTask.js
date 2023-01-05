@@ -5,7 +5,7 @@ const CreateNewTask = (props) => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    status: false,
+    status: "Incomplete",
   });
 
   const submitHandler = async (e) => {
