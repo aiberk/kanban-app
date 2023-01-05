@@ -48,6 +48,7 @@ app.get("/api/tasks", async (req, res) => {
 });
 
 //Create new tasks POST request
+//For some reason  not posting all data
 app.post("/create-task", cleanup, async (req, res) => {
   console.log(req);
   const newData = await db.collection("Tasks").insertOne(req.cleanData);
