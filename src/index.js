@@ -16,16 +16,29 @@ function App() {
     getData();
   }, []);
   console.log(tasks);
+
+  const sortedbyTimeStamp = tasks.sort(function (a, b) {
+    let timestamp_a = a._id.toString().substring(0, 8);
+    let timestamp_b = b._id.toString().substring(0, 8);
+    let date_a = new Date(parseInt(timestamp_a, 16) * 1000);
+    let date_b = new Date(parseInt(timestamp_b, 16) * 1000);
+    return Number(date_b) - Number(date_a);
+  });
+
+  const sortedbyName = tasks.sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
   return (
     <div>
-      <CreateNewTask setTasks={setTasks} />
+      <CreateNewTask setTasks={setTasks} tasks={tasks} />
       <h1>Tasks:</h1>
-      {tasks.map((task) => {
+      {sortedbyName.map((task) => {
         return (
           <TaskCard
             key={task._id}
             id={task._id}
             name={task.name}
+            status={task.status}
             description={task.description}
             setTasks={setTasks}
           />
