@@ -64,13 +64,21 @@ app.post("/create-task", cleanup, async (req, res) => {
 });
 
 //Edits task info
-app.post("/update-task", async (req, res) => {
+app.post("/update-task", cleanup, async (req, res) => {
   console.log(req.body);
-  db.collection("Tasks").replaceOne(
-    { _id: new ObjectId(req.params.id) },
-    req.body
+  console.log(req.cleanData);
+  let updateTask = await db.collection("Tasks").updateOne(
+    { _id: new ObjectId(req.body.id) },
+    {
+      $set: {
+        name: req.body.name,
+        description: req.body.description,
+        status: req.body.status,
+      },
+    }
   );
-  res.send("Task Updated");
+
+  res.send(updateTask);
 });
 
 //Deletes task by using its id number

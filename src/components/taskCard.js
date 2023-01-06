@@ -23,7 +23,7 @@ function TaskCard(props) {
     if (formData.name == "" || formData.name == " ") {
       formData.name = props.name;
     }
-    console.log(typeof formData);
+    console.log(formData);
     setIsEditing(false);
     await axios
       .post("/update-task", formData)
